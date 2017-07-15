@@ -18,9 +18,8 @@ use FOS\RestBundle\View\View;
 class RestController extends FOSRestController
 {
     /**
-     * Metodo que se encarga de consumir servicio que consulta el listado de actores a partir
-     * de una cadena.
-     * @Rest\Get("/api/actor/{query}")
+     * Consumes de MovieDb Service through the client class
+     * @Rest\Get("/api/actor/{query}", defaults={"query"=""})
      * @param $query
      * @return View|\Symfony\Component\HttpFoundation\JsonResponse
      */
@@ -35,18 +34,18 @@ class RestController extends FOSRestController
     }
 
     /**
-     * @Rest\Get("/api/actorMovies/{actorID}")
+     * Consumes de MovieDb Service through the client class
+     * @Rest\Get("/api/actorMovies/{actorID}", defaults={"actorID"=""})
      * @param $actorID
      * @return View|\Symfony\Component\HttpFoundation\JsonResponse
      */
     public function getActorMovies($actorID)
     {
-        //TODO: colocar el consumo del servicio
         try{
             $movieClient = new TheMovieDbClient($this->container);
             return $this->json($movieClient->getActorsCredits($actorID));
         } catch (\Exception $ex) {
-            return new View("Actor not found", Response::HTTP_NOT_FOUND);
+            return $this->json($ex, 500);
         }
     }
 }
