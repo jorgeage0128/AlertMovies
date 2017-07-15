@@ -15,5 +15,7 @@
 /vendor/
 /web/bundles/
 /web/img/
-.idea/dataSources*
-.idea/sqldialects*
+.idea/*
+.web-server-pid
+composer.phar
+
