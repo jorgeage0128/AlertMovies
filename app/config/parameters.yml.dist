@@ -17,3 +17,9 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    #token key for movies api
+    movie_token: 0d59ef29b79a9b6c2b606f5cd1adf827
+
+    #movie URL service
+    movie_url_service: https://api.themoviedb.org/3/
