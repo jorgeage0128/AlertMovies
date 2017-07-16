@@ -81,12 +81,22 @@ class TheMovieDbClient extends Controller
      * @return mixed|string json, empty json for errors
      */
     public function getActorsCredits($actorID, $language = "en", $page="1"){
-        $json = "";
+        $json = array();
         $url = $this->URL.$this->SEARCH_CREDITS_URL_PART.$actorID."/".$this->MOVIE_CREDITS;
         $parameters = array('api_key' =>  $this->API_KEY, 'language' => $language, 'page' => $page);
         $response = Unirest\Request::get($url,$this->HEADERS,$parameters);
+
         if ($response->code == $this->SUCCESS_CODE) {
-            $json = $response->body;
+
+            $responseArray = array();
+            $order = array();
+            foreach ($response->body->cast as $key => $job){
+                $responseArray[] = array("movie" => $job->original_title, "date" => $job->release_date);
+            }
+            usort($responseArray, function($a, $b){
+                return strtotime($a["date"]) - strtotime($b["date"]);
+            });
+            $json = $responseArray;
         }
         return $json;
     }

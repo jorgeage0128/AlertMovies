@@ -21,30 +21,31 @@ class RestController extends FOSRestController
     /**
      * Consumes de MovieDb Service through the client class
      * @Rest\Get("/api/actor")
-     * @param $query
-     * @return View|\Symfony\Component\HttpFoundation\JsonResponse
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function getActor(Request $request)
     {
-        //try{
+        try{
             $movieClient = new TheMovieDbClient($this->container);
             $query = $request->get("query");
             $page = $request->get("page");
             return $this->json($movieClient->getActors($query,$page));
-        //} catch (\Exception $ex) {
-        //    return $this->json($ex, 500);
-        //}
+        } catch (\Exception $ex) {
+            return $this->json($ex, 500);
+        }
     }
 
     /**
      * Consumes de MovieDb Service through the client class
-     * @Rest\Get("/api/actorMovies/{actorID}", defaults={"actorID"=""})
-     * @param $actorID
-     * @return View|\Symfony\Component\HttpFoundation\JsonResponse
+     * @Rest\Get("/api/actorMovies")
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function getActorMovies($actorID)
+    public function getActorMovies(Request $request)
     {
         try{
+            $actorID = $request->get("actorID");
             $movieClient = new TheMovieDbClient($this->container);
             return $this->json($movieClient->getActorsCredits($actorID));
         } catch (\Exception $ex) {

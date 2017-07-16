@@ -18,7 +18,7 @@
     </div>
 
     <div class="container" style="display: none" id="dataTable">
-        <table id="example" class="display" cellspacing="0" width="100%" >
+        <table id="example" class="compact dataTable" cellspacing="0" width="100%" >
             <thead>
                 <tr>
                     <th>Name</th>
@@ -39,11 +39,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="modalMovieTitle"></h4>
+                    <h4 class="modal-title" id="modalMovieTitle">Movie List</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="container" id="dataTable">
-                        <table id="movieListTable" class="display" cellspacing="0" width="100%" >
+                        <table id="movieListTable" class="display" cellspacing="0" >
                             <thead>
                             <tr>
                                 <th>Movie Name</th>
@@ -57,7 +56,6 @@
                             </tr>
                             </tbody>
                         </table>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -70,9 +68,9 @@
 {% endblock %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/datatable.min.css') }}"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/r/bs-3.3.5/jq-2.1.4,dt-1.10.8/datatables.min.css"/>
 {% endblock %}
 
 {% block javascripts %}
-    <script src="{{ asset('js/movies/services.js') }}"></script>
+    <script src="{{ asset('js/movies/services.js') }}"></script><script type="text/javascript" src="https://cdn.datatables.net/r/bs-3.3.5/jqc-1.11.3,dt-1.10.8/datatables.min.js"></script>
 {% endblock %}

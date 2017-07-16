@@ -10,7 +10,9 @@ $(document).ready(function() {
     });
 
     $('#movieListTable').DataTable({
-        pageLength: 20
+        pageLength: 20,
+        ordering: false,
+        pagingType: "simple",
     });
 });
 
@@ -60,6 +62,40 @@ function getActors(){
 
 function getMovies(actorId){
     $('#movieList').modal('show');
+
+    $.ajax({
+        type:"GET",
+        url:"/api/actorMovies",
+        dataType:"json",
+        data: {
+            actorID: actorId
+        },
+        beforeSend: function(xhr){
+            prepareMessageModal("Loading","<img src='http://www.vaporizerviews.com/wp-content/plugins/no-spam-at-all/img/loading.gif' />")
+            $('#modal').modal('show');
+        }
+    }).done(function (data) {
+        console.log(data);
+        processMovieData(data);
+        $('#modal').modal('hide');
+    });
+
+}
+
+function processMovieData(data){
+    if (data.length > 0){
+        var table = $('#movieListTable').DataTable();
+        table.clear();
+        $.each(data, function(key, value){
+            table.row.add([
+                    value.movie+"&emsp;",value.date==""? "No Date":value.date
+                ]
+            );
+        });
+        table.draw();
+        $("#movieListTable_length").css("display","none");
+
+    }
 }
 
 function processData(data, totalRows, totalPages){
