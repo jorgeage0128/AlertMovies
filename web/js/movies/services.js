@@ -14,7 +14,17 @@ $(document).ready(function() {
         ordering: false,
         pagingType: "simple",
     });
+
+    $('#movieList').on('hidden.bs.modal', function () {
+        clean();
+    })
 });
+
+function clean(){
+    var table = $('#movieListTable').DataTable();
+    table.clear();
+    table.draw();
+}
 
 function prepareMessageModal(titleContent, bodyContent){
     $('#modalTitle').html(titleContent);
@@ -75,7 +85,6 @@ function getMovies(actorId){
             $('#modal').modal('show');
         }
     }).done(function (data) {
-        console.log(data);
         processMovieData(data);
         $('#modal').modal('hide');
     });
@@ -86,6 +95,7 @@ function processMovieData(data){
     if (data.length > 0){
         var table = $('#movieListTable').DataTable();
         table.clear();
+        table.draw();
         $.each(data, function(key, value){
             table.row.add([
                     value.movie+"&emsp;",value.date==""? "No Date":value.date
