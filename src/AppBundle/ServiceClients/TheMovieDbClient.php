@@ -60,12 +60,13 @@ class TheMovieDbClient extends Controller
 
     /**
      * @param $query the needle for search de actor
-     * @return mixed|string json, empty json for errors
+     * @param string $page indicates the page to retrieve
+     * @return mixed|string
      */
-    public function getActors($query){
+    public function getActors($query, $page="1"){
         $json = "";
         $url = $this->URL.$this->SEARCH_PERSON_URL_PART;
-        $parameters = array('api_key' =>  $this->API_KEY, 'query' => $query);
+        $parameters = array('api_key' =>  $this->API_KEY, 'query' => $query, 'page' => $page);
         $response = Unirest\Request::get($url,$this->HEADERS,$parameters);
         if ($response->code == $this->SUCCESS_CODE) {
             $json = $response->body;
@@ -76,12 +77,13 @@ class TheMovieDbClient extends Controller
     /**
      * @param $actorID ID actor used to get his credits.
      * @param string $language language
+     * @param string $page indicates the page to retrieve
      * @return mixed|string json, empty json for errors
      */
-    public function getActorsCredits($actorID, $language = "en"){
+    public function getActorsCredits($actorID, $language = "en", $page="1"){
         $json = "";
         $url = $this->URL.$this->SEARCH_CREDITS_URL_PART.$actorID."/".$this->MOVIE_CREDITS;
-        $parameters = array('api_key' =>  $this->API_KEY, 'language' => $language);
+        $parameters = array('api_key' =>  $this->API_KEY, 'language' => $language, 'page' => $page);
         $response = Unirest\Request::get($url,$this->HEADERS,$parameters);
         if ($response->code == $this->SUCCESS_CODE) {
             $json = $response->body;
