@@ -47,12 +47,14 @@ function cleanScreen(){
     currentActorPage = 1;
     $('#actor').val("");
     $("#dataTable").css("display","none");
+    clean();
 
 
 }
 
 function clean(){
     var table = $('#movieListTable').DataTable();
+    table.search( '' ).columns().search( '' );
     table.clear();
     table.draw();
 }
