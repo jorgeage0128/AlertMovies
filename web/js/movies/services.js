@@ -17,7 +17,9 @@ $(document).ready(function() {
 
     $('#movieList').on('hidden.bs.modal', function () {
         clean();
-    })
+    });
+
+    $('#example').removeClass( 'display' ).addClass('table table-striped table-bordered');
 });
 
 $('#actor').keypress(function (e) {
@@ -27,20 +29,6 @@ $('#actor').keypress(function (e) {
         firstCall();
     }
 });
-
-function clean(){
-    var table = $('#movieListTable').DataTable();
-    table.clear();
-    table.draw();
-}
-
-function prepareMessageModal(titleContent, bodyContent){
-    $('#modalTitle').html(titleContent);
-    $('#modalBody').html(bodyContent);
-}
-
-$('#example').removeClass( 'display' ).addClass('table table-striped table-bordered');
-
 
 function firstCall(){
     actorPages = 1;
@@ -52,6 +40,26 @@ function firstCall(){
         $("#alertMsg").css("display","block");
     }
 
+}
+
+function cleanScreen(){
+    actorPages = 1;
+    currentActorPage = 1;
+    $('#actor').val("");
+    $("#dataTable").css("display","none");
+
+
+}
+
+function clean(){
+    var table = $('#movieListTable').DataTable();
+    table.clear();
+    table.draw();
+}
+
+function prepareMessageModal(titleContent, bodyContent){
+    $('#modalTitle').html(titleContent);
+    $('#modalBody').html(bodyContent);
 }
 
 function getActors(){
@@ -100,8 +108,8 @@ function getMovies(actorId){
 }
 
 function processMovieData(data){
+    var table = $('#movieListTable').DataTable();
     if (data.length > 0){
-        var table = $('#movieListTable').DataTable();
         table.clear();
         table.draw();
         $.each(data, function(key, value){
@@ -113,6 +121,9 @@ function processMovieData(data){
         table.draw();
         $("#movieListTable_length").css("display","none");
 
+    } else {
+        table.clear();
+        table.draw();
     }
 }
 

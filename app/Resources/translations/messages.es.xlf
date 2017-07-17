@@ -4,11 +4,15 @@
         <body>
             <trans-unit id="index.error.message">
                 <source>index.error.message</source>
-                <target>Por favor escriba algo para iniciar</target>
+                <target>Por favor escriba un nombre de actor para buscar</target>
             </trans-unit>
             <trans-unit id="index.search">
                 <source>index.search</source>
                 <target>Buscar</target>
+            </trans-unit>
+            <trans-unit id="index.clean">
+                <source>index.clean</source>
+                <target>Limpiar</target>
             </trans-unit>
             <trans-unit id="index.actor.name">
                 <source>index.actor.name</source>
