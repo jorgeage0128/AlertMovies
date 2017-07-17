@@ -1,17 +1,14 @@
 {% extends 'base.html.twig' %}
-
 {% block body %}
-
-
 <div class="container">
     <h2>Alert Movies</h2>
     <div class="row">
         <div class="col-lg-6">
-            <div class="alert alert-danger" role="alert" style="display: none" id="alertMsg">please write something to begin</div>
+            <div class="alert alert-danger" role="alert" style="display: none" id="alertMsg">{{ 'index.error.message' | trans }}</div>
             <div class="input-group">
                 <input type="text" class="form-control" placeholder="Search for actors" id="actor" name="actor">
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" onclick="firstCall();">Search</button>
+                    <button class="btn btn-default" type="button" onclick="firstCall();">{{ 'index.search' | trans }}</button>
                 </span>
             </div><!-- /input-group -->
         </div><!-- /.col-lg-6 -->
@@ -21,8 +18,8 @@
         <table id="example" class="compact dataTable" cellspacing="0" width="100%" >
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Movies</th>
+                    <th>{{ 'index.actor.name' | trans }}</th>
+                    <th>{{ 'index.actor.movieName' | trans }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -33,20 +30,19 @@
             </tbody>
         </table>
     </div>
-
     <div class="modal fade" tabindex="-1" role="dialog" id="movieList">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="modalMovieTitle">Movie List</h4>
+                    <h4 class="modal-title" id="modalMovieTitle">{{ 'index.movies.modalTitle' | trans }}</h4>
                 </div>
                 <div class="modal-body">
                         <table id="movieListTable" class="display" cellspacing="0" >
                             <thead>
                             <tr>
-                                <th>Movie Name</th>
-                                <th>Date</th>
+                                <th>{{ 'index.movies.name' | trans }}</th>
+                                <th>{{ 'index.movies.date' | trans }}</th>
                             </tr>
                             </thead>
                             <tbody>

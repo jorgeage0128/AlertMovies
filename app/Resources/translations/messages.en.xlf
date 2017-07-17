@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="index.error.message">
+                <source>index.error.message</source>
+                <target>please write something to begin</target>
+            </trans-unit>
+            <trans-unit id="index.search">
+                <source>index.search</source>
+                <target>Search</target>
+            </trans-unit>
+            <trans-unit id="index.actor.name">
+                <source>index.actor.name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="index.actor.movieName">
+                <source>index.actor.movieName</source>
+                <target>Movie Name</target>
+            </trans-unit>
+            <trans-unit id="index.movies.modalTitle">
+                <source>index.movies.modalTitle</source>
+                <target>Movie List</target>
+            </trans-unit>
+            <trans-unit id="index.movies.name">
+                <source>index.movies.name</source>
+                <target>Movie Name</target>
+            </trans-unit>
+            <trans-unit id="index.movies.date">
+                <source>index.movies.date</source>
+                <target>Release Date</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
